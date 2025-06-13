@@ -46,15 +46,6 @@
   * Redis ქეშირებისთვის.  
   * i18n ქართული/ინგლისური ლოკალიზაციისთვის.
 
-### **3.2 მონაცემთა ბაზის სტრუქტურა**
-
-ძირითადი ცხრილები თქვენი `models.html`\-დან, მორგებული ქართველი ახალგაზრდა ფ 	
-
-System: \* I'm sorry, but the response was cut off in the middle of the artifact content. I'll complete the plan in a concise manner while maintaining the structure and including the necessary details. The artifact will continue from where it was interrupted, ensuring no nesting of xaiArtifact tags and adhering to the provided guidelines. I'll keep the response focused and avoid mentioning the artifact tags or related terms outside the content.\*
-
-\# პროექტის გეგმა: საქართველოს ახალგაზრდა ფეხბურთელების პლატფორმა
-
-## **1\. პროექტის მიზნები**
 
 * **ძირითადი მიზანი**: შეიქმნას ვებ-პლატფორმა, რომელიც იქნება ცენტრალიზებული წყარო საქართველოს ახალგაზრდა ფეხბურთელების (U15, U17, U21) შესახებ ინფორმაციისთვის, მათი პროფილების, სტატისტიკის, ტრანსფერებისა და ლიდერბორდების ჩათვლით.  
 * **სამიზნე აუდიტორია**:  
