@@ -8,14 +8,13 @@ async function seed() {
   });
 
   const team = await Team.create({
-    club_id: club.club_id,
+    club_id: club.id,
     age_group: "U17",
     coach_name: "Giorgi Nemsadze",
   });
 
   const player = await Player.create({
-    team_id: team.team_id,
-    id: 1,
+    team_id: team.id,
     first_name: "Luka",
     last_name: "Gagnidze",
     birth_date: "2006-02-15",
@@ -25,7 +24,7 @@ async function seed() {
   });
 
   await Statistics.create({
-    player_id: player.player_id,
+    player_id: player.id,
     season: "2024/2025",
     matches_played: 10,
     goals: 5,

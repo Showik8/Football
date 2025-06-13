@@ -9,7 +9,7 @@ const AddPlayerForm = () => {
     birth_date: "",
     position: "",
     height: "",
-    team_id: "",
+    team_id: 1,
     stats: { matches_played: "", goals: "", assists: "" },
   });
   const [message, setMessage] = useState("");
@@ -41,7 +41,7 @@ const AddPlayerForm = () => {
         birth_date: "",
         position: "",
         height: "",
-        team_id: "",
+        team_id: 1,
         stats: { matches_played: "", goals: "", assists: "" },
       });
     } catch (error) {
@@ -114,7 +114,7 @@ const AddPlayerForm = () => {
         <div className="form-group">
           <label htmlFor="team_id">გუნდის ID</label>
           <input
-            type="numeric"
+            type="number"
             name="team_id"
             value={formData.team_id}
             onChange={handleChange}
