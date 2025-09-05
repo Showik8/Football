@@ -87,10 +87,10 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
               <h2 className="text-lg font-bold leading-tight">
                 {statisticLabels[type]}
               </h2>
-            </div>
-            <div className="text-right ">
-              <div className="text-2xl font-bold">{data?.length || 0}</div>
-              <div className="text-xs opacity-80">Players</div>
+              <div className="text-right ">
+                <div className="text-2xl font-bold">{data?.length || 0}</div>
+                <div className="text-xs opacity-80">Players</div>
+              </div>
             </div>
           </div>
         </div>
@@ -103,6 +103,7 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
                 key={player.id}
                 className={`
                   cursor-pointer
+                  w-full
                   relative flex items-center justify-between p-4 rounded-xl transition-all duration-300
                   ${
                     index === 0
@@ -117,7 +118,7 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
                 `}
               >
                 {/* Player Info */}
-                <div className="flex items-center space-x-3 flex-1">
+                <div className="flex justify-between items-center  flex-1 p-2">
                   {/* Rank Badge */}
                   <div
                     className={`
@@ -133,34 +134,30 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
                   </div>
 
                   {/* Player Name */}
-                  <div className="min-w-0 flex-1">
-                    <div
-                      className={`font-semibold truncate ${
+                  <div className="flex items-center ">
+                    <span
+                      className={`font-semibold truncate wrap-normal ${
                         index === 0 ? "text-white" : "text-gray-900"
                       }`}
                     >
                       {player.name}
-                    </div>
-                    <div
+                    </span>
+                    <span
                       className={`text-xs ${
                         index === 0 ? "text-white/80" : "text-gray-500"
                       }`}
                     >
                       #{player.jersey}
-                    </div>
+                    </span>
                   </div>
-                </div>
-
-                {/* Statistic Value */}
-                <div className="flex-shrink-0">
-                  <div
+                  <span
                     className={`
                     px-3 py-1 rounded-full text-sm font-bold
                     ${index === 0 ? "bg-white/20 text-white" : colors.accent}
                   `}
                   >
                     {player[type]}
-                  </div>
+                  </span>
                 </div>
               </li>
             ))}

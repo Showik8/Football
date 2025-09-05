@@ -93,7 +93,7 @@ const StatisticSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="statistics"
-      className="relative text-center flex items-center flex-col pt-20 pb-32 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-screen"
+      className="relative text-center flex  flex-col pt-20 pb-32 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-screen"
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-600/10 via-indigo-600/10 to-purple-600/10" />
 
@@ -127,7 +127,7 @@ const StatisticSection: React.FC = () => {
 
       <div
         ref={gridRef}
-        className="relative z-10 mt-8 grid w-[95%] max-w-7xl grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+        className=" w-full  p-5 relative gap-8 z-10 mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 "
       >
         {statistic ? (
           <>
