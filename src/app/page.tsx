@@ -3,6 +3,7 @@ import News from "./components/News/News";
 import StatisticSection from "./components/Statistic/StatisticSection";
 import Table from "./components/Table/Table";
 import { Suspense } from "react";
+import Hero from "./components/HeroSection/Hero";
 
 export default async function Home() {
   return (
@@ -14,6 +15,7 @@ export default async function Home() {
           </>
         }
       >
+        <Hero />
         <Header />
         <News />
         <StatisticSection />

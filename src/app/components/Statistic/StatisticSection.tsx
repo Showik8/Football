@@ -118,11 +118,11 @@ const StatisticSection: React.FC = () => {
         ref={titleRef}
         className="relative z-10 text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-8 leading-tight cursor-default"
       >
-        <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent text-3xl md:text-6xl">
           ფეხბურთელების
         </span>
         <br />
-        <span className="text-white">სტატისტიკა</span>
+        <span className="text-white text-3xl md:text-6xl">სტატისტიკა</span>
       </h1>
 
       <div
