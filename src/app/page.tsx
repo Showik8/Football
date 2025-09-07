@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <>
       <Header />
-      <News />
       <StatisticSection />
+      <News />
       <Table />
     </>
   );

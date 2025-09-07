@@ -4,16 +4,10 @@ import NewsCard from "./NewsCard";
 import HeadLines from "./HeadLines";
 import type { News } from "@/app/types";
 import { Skeleton } from "@mui/material";
-import { useCachedFetch } from "@/app/utils/useCachedFetch";
+import { useFetch } from "@/app/utils/useFetch";
 
 const News = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_URL!;
-
-  const { data: news, loading: newsLoading } = useCachedFetch<News[]>(
-    "news",
-    `${baseUrl}/news`,
-    60000
-  );
+  const { data: news, loading: newsLoading } = useFetch<News[]>("news");
 
   return (
     <>

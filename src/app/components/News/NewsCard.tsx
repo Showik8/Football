@@ -27,7 +27,7 @@ const NewsCard = ({ news }: { news: news | null }) => {
   return (
     <div
       ref={cardRef}
-      className="group relative h-[450px] md:h-[680px] w-full md:max-w-[65%] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/20 backdrop-blur-sm"
+      className="group relative h-[450px] md:h-[680px] w-full md:max-w-[65%] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/20 "
     >
       <div ref={imageRef} className="w-full h-full">
         <Image

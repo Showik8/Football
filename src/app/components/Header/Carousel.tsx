@@ -2,16 +2,11 @@
 import React from "react";
 import { Card } from "./Card";
 import type { Matches } from "@/app/types";
-import { useCachedFetch } from "@/app/utils/useCachedFetch";
+import { useFetch } from "@/app/utils/useFetch";
 
 const Carousel: React.FC = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_URL!;
-
-  const { data: matches, loading: matchesLoading } = useCachedFetch<Matches[]>(
-    "matches",
-    `${baseUrl}/matches`,
-    60000
-  );
+  const { data: matches, loading: matchesLoading } =
+    useFetch<Matches[]>("matches");
 
   const skeletonCount = 5;
 

@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export function useCachedFetch<T>(key: string, url: string, ttl = 60000) {
+export function useFetch<T>(key: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_URL!;
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -11,30 +12,13 @@ export function useCachedFetch<T>(key: string, url: string, ttl = 60000) {
 
     async function load() {
       try {
-        // 📌 Step 1: localStorage check
-        const cached = localStorage.getItem(key);
-        if (cached) {
-          const { value, expires } = JSON.parse(cached);
-          if (Date.now() < expires) {
-            setData(value);
-            setLoading(false);
-          }
-        }
-
-        // 📌 Step 2: fetch fresh data
-        const res = await fetch(url, { cache: "no-store" });
+        const res = await fetch(`${baseUrl}/${key}`);
         if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
         const freshData: T = await res.json();
 
         if (isMounted) {
           setData(freshData);
           setLoading(false);
-
-          // 📌 Step 3: save in cache
-          localStorage.setItem(
-            key,
-            JSON.stringify({ value: freshData, expires: Date.now() + ttl })
-          );
         }
       } catch (err: unknown) {
         if (isMounted) {
@@ -45,10 +29,11 @@ export function useCachedFetch<T>(key: string, url: string, ttl = 60000) {
     }
 
     load();
+
     return () => {
       isMounted = false;
     };
-  }, [key, url, ttl]);
+  }, [baseUrl, key]);
 
   return { data, loading, error };
 }

@@ -3,7 +3,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import StatisticCards from "./StatisticCards";
 import StatisticCardSkeleton from "./StatisticCardSkeleton";
 import { gsap } from "gsap";
-import { useCachedFetch } from "@/app/utils/useCachedFetch";
+import { useFetch } from "@/app/utils/useFetch";
 
 type Player = {
   id: number;
@@ -23,9 +23,9 @@ type Data = {
 };
 
 const StatisticSection: React.FC = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_URL!;
-  const { data: statistic, loading: statisticLoading } =
-    useCachedFetch<Data | null>("statistic", `${baseUrl}/statistic`, 60000);
+  const { data: statistic, loading: statisticLoading } = useFetch<Data | null>(
+    "statistic"
+  );
 
   const sectionRef = useRef<HTMLElement | null>(null);
   const titleWrapRef = useRef<HTMLDivElement | null>(null);
