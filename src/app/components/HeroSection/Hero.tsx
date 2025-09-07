@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Ball from "./Ball.svg";
+import Image from "next/image";
 
 const Index = () => {
   const soccerBallRef = useRef<HTMLDivElement>(null);
@@ -133,16 +135,7 @@ const Index = () => {
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         {/* Soccer Ball */}
         <div ref={soccerBallRef} className="mb-8">
-          <div className="w-16 h-16 bg-white rounded-full relative shadow-lg">
-            {/* Soccer ball pattern */}
-            <div className="absolute inset-2 border-2 border-black rounded-full">
-              <div className="absolute top-1 left-1/2 w-2 h-2 bg-black rounded-full transform -translate-x-1/2" />
-              <div className="absolute bottom-1 left-1/4 w-1.5 h-1.5 bg-black rounded-full" />
-              <div className="absolute bottom-1 right-1/4 w-1.5 h-1.5 bg-black rounded-full" />
-              <div className="absolute top-1/2 left-1 w-1 h-4 bg-black transform -translate-y-1/2" />
-              <div className="absolute top-1/2 right-1 w-1 h-4 bg-black transform -translate-y-1/2" />
-            </div>
-          </div>
+          <Image src={Ball} alt={"ball"} width={70} height={70} />
         </div>
 
         {/* Hero Text */}

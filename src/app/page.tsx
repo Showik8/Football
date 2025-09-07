@@ -15,10 +15,10 @@ export default async function Home() {
           </>
         }
       >
-        <Hero />
         <Header />
-        <News />
+        <Hero />
         <StatisticSection />
+        <News />
         <Table />
       </Suspense>
     </>
