@@ -8,30 +8,34 @@ export function useFetch<T>(key: string) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let isMounted = true;
+    const controller = new AbortController();
+    const signal = controller.signal;
 
     async function load() {
       try {
-        const res = await fetch(`${baseUrl}/${key}`);
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch(`${baseUrl}/${key}`, { signal });
         if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
         const freshData: T = await res.json();
 
-        if (isMounted) {
-          setData(freshData);
-          setLoading(false);
-        }
+        setData(freshData);
+        setLoading(false);
       } catch (err: unknown) {
-        if (isMounted) {
-          setError(err instanceof Error ? err.message : String(err));
-          setLoading(false);
+        if (err instanceof DOMException && err.name === "AbortError") {
+          // Fetch was aborted → do nothing
+          return;
         }
+        setError(err instanceof Error ? err.message : String(err));
+        setLoading(false);
       }
     }
 
     load();
 
     return () => {
-      isMounted = false;
+      controller.abort(); // cleanup → cancel fetch
     };
   }, [baseUrl, key]);
 

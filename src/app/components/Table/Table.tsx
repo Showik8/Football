@@ -14,7 +14,7 @@ const TournamentOptions = [
   { value: "league", label: "League" },
 ];
 
-const Nagdi = () => {
+const Table = () => {
   const baseUrl = process.env.NEXT_PUBLIC_URL!;
   const [ageCategory, setAgeCategory] = useState("u-19");
   const [tournament, setTournament] = useState("gff");
@@ -22,9 +22,13 @@ const Nagdi = () => {
   const [rows, setRows] = useState<TeamRow[] | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     async function sendGet(updatedAge?: string, updatedTournament?: string) {
       try {
         setError(null);
+
         const params = new URLSearchParams({
           ageCategory: updatedAge ?? ageCategory,
           tournament: updatedTournament ?? tournament,
@@ -32,10 +36,14 @@ const Nagdi = () => {
 
         const res = await fetch(`${baseUrl}/tournaments?${params.toString()}`, {
           method: "GET",
+          signal,
         });
 
-        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(`Fetch failed: ${res.status}`);
+        }
 
+        const data = await res.json();
         const rows: TeamRow[] = data.tournaments ?? data;
 
         if (rows) {
@@ -45,6 +53,9 @@ const Nagdi = () => {
           setRows(sorted);
         }
       } catch (error: unknown) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
         setError(`ამ ტურნირის მონაცემები ${ageCategory} -ში არ მოიძებნა`);
         console.error(
           "Error fetching data:",
@@ -55,11 +66,15 @@ const Nagdi = () => {
     }
 
     sendGet();
-  }, [tournament, ageCategory, baseUrl, error]);
+
+    return () => {
+      controller.abort(); // cleanup cancels the fetch
+    };
+  }, [tournament, ageCategory, baseUrl]);
 
   return (
-    <section className="w-full p-15 bg-[#F7F9FB]">
-      <div className="px-10 py-6 bg-white">
+    <section className="w-full p-2 bg-[#F7F9FB] md:p-6 lg:p-10 ">
+      <div className="px-2 py-6 bg-white">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-2xl font-semibold">League Phase</h2>
           <form
@@ -133,4 +148,4 @@ const Nagdi = () => {
   );
 };
 
-export default Nagdi;
+export default Table;

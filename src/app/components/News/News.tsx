@@ -14,7 +14,7 @@ const News = () => {
       <section
         id="News"
         className="w-screen  md:p-10 p-5 gap-10
-            flex flex-col md:flex-row justify-around 
+            flex flex-col md:flex-row justify-around
             bg-[rgba(8,8,96,1)]
           "
       >

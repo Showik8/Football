@@ -81,16 +81,16 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
           before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/10 before:to-transparent
         `}
         >
-          <div className="flex items-center justify-between ">
+          <div className="flex items-center justify-between w-full ">
             <div className="flex items-center space-x-3">
               <span className="text-3xl">{colors.icon}</span>
               <h2 className="text-lg font-bold leading-tight">
                 {statisticLabels[type]}
               </h2>
-              <div className="text-right ">
-                <div className="text-2xl font-bold">{data?.length || 0}</div>
-                <div className="text-xs opacity-80">Players</div>
-              </div>
+            </div>
+            <div className="text-right ">
+              <div className="text-2xl font-bold">{data?.length || 0}</div>
+              <div className="text-xs opacity-80">Players</div>
             </div>
           </div>
         </div>
