@@ -3,30 +3,13 @@ import React, { useLayoutEffect, useRef } from "react";
 import StatisticCards from "./StatisticCards";
 import StatisticCardSkeleton from "./StatisticCardSkeleton";
 import { gsap } from "gsap";
-import { useFetch } from "@/app/utils/useFetch";
+import type { Statistics } from "@/app/types";
 
-type Player = {
-  id: number;
-  name: string;
-  jersey: number;
-  goal: number;
-  matchPlayed?: number;
-  assist: number;
-  view: number;
+type Props = {
+  statistic: Statistics;
 };
 
-type Data = {
-  topGoalScorers: Player[];
-  topAssists: Player[];
-  topViewers: Player[];
-  topMatchPlayed: Player[];
-};
-
-const StatisticSection: React.FC = () => {
-  const { data: statistic, loading: statisticLoading } = useFetch<Data | null>(
-    "statistic"
-  );
-
+const StatisticSection: React.FC<Props> = ({ statistic }) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const titleWrapRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -87,7 +70,7 @@ const StatisticSection: React.FC = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [statistic, statisticLoading]);
+  }, [statistic]);
 
   return (
     <section
@@ -159,14 +142,14 @@ const StatisticSection: React.FC = () => {
               />
             </div>
           </>
-        ) : statisticLoading ? (
+        ) : (
           <>
             <StatisticCardSkeleton />
             <StatisticCardSkeleton />
             <StatisticCardSkeleton />
             <StatisticCardSkeleton />
           </>
-        ) : null}
+        )}
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/20 to-transparent" />

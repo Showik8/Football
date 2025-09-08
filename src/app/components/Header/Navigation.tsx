@@ -4,7 +4,7 @@ const menuItems = ["Matches", "Statistic", "Teams", "News"];
 
 const Navigation = () => {
   return (
-    <nav>
+    <nav className="lg:ml-17">
       <ul className="flex gap-2  md:flex-row md:gap-6 text-center">
         {menuItems.map((item) => (
           <li key={item} className="">

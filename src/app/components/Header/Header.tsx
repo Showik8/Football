@@ -1,12 +1,11 @@
 "use client";
 
 import Navigation from "./Navigation";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 const Header: React.FC = () => {
-  const width = typeof window !== "undefined" ? window.innerWidth : 1440;
-  const isPhone = width < 760;
+  const [isPhone, setIsPhone] = useState(false);
 
   const headerRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -14,41 +13,20 @@ const Header: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const width = window.innerWidth;
+    setIsPhone(width < 760);
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: "power3.out", duration: 1 },
       });
 
-      tl.from(headerRef.current, {
-        opacity: 0,
-        y: 50,
-      })
-        .from(
-          titleRef.current,
-          {
-            opacity: 0,
-            x: -30,
-          },
-          "+=0.2"
-        )
-        .from(
-          navRef.current,
-          {
-            opacity: 0,
-            y: -20,
-          },
-          "+=0.2"
-        );
+      tl.from(headerRef.current, { opacity: 0, y: 50 })
+        .from(titleRef.current, { opacity: 0, x: -30 }, "+=0.2")
+        .from(navRef.current, { opacity: 0, y: -20 }, "+=0.2");
 
       if (inputRef.current) {
-        tl.from(
-          inputRef.current,
-          {
-            opacity: 0,
-            scale: 0.4,
-          },
-          "+=0.2"
-        );
+        tl.from(inputRef.current, { opacity: 0, scale: 0.4 }, "+=0.2");
       }
     }, headerRef);
 

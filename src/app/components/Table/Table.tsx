@@ -68,7 +68,7 @@ const Table = () => {
     sendGet();
 
     return () => {
-      controller.abort(); // cleanup cancels the fetch
+      controller.abort();
     };
   }, [tournament, ageCategory, baseUrl]);
 

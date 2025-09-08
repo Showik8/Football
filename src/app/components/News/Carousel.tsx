@@ -1,12 +1,10 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-import type { Matches } from "@/app/types";
-import { useFetch } from "@/app/utils/useFetch";
 import MatchCard from "./MatchCard";
 import { gsap } from "gsap";
+import type { Matches } from "@/app/types";
 
-const Carousel: React.FC = () => {
-  const { data: matches } = useFetch<Matches[]>("matches");
+const Carousel = ({ matches }: { matches: Matches[] }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

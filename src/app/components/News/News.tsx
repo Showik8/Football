@@ -3,13 +3,11 @@ import React, { useEffect, useRef } from "react";
 import NewsCard from "./NewsCard";
 import HeadLines from "./HeadLines";
 import type { News } from "@/app/types";
-import { Skeleton } from "@mui/material";
-import { useFetch } from "@/app/utils/useFetch";
 import Carousel from "./Carousel";
 import { gsap } from "gsap/gsap-core";
+import type { Matches } from "@/app/types";
 
-const News = () => {
-  const { data: news, loading: newsLoading } = useFetch<News[]>("news");
+const News = ({ news, matches }: { news: News[]; matches: Matches[] }) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const delay = 0.5;
 
@@ -32,12 +30,9 @@ const News = () => {
             bg-[rgba(8,8,96,1)]
           "
       >
-        <Carousel />
+        <Carousel matches={matches} />
         <div ref={itemRef} className="flex flex-col gap-4 lg:flex-row ">
           {news && <NewsCard news={news[0]} />}
-          {newsLoading && (
-            <Skeleton variant="rectangular" width={600} height={700}></Skeleton>
-          )}
           <HeadLines data={news} />
         </div>
       </section>
