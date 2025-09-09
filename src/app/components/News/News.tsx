@@ -1,10 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import NewsCard from "./NewsCard";
-import HeadLines from "./HeadLines";
-import type { News } from "@/app/types";
-import Carousel from "./Carousel";
+import { NewsCard, HeadLines, Carousel } from "./index";
 import { gsap } from "gsap/gsap-core";
+import type { News } from "@/app/types";
 import type { Matches } from "@/app/types";
 
 const News = ({ news, matches }: { news: News[]; matches: Matches[] }) => {

@@ -1,7 +1,6 @@
 "use client";
 import React, { useLayoutEffect, useRef } from "react";
-import StatisticCards from "./StatisticCards";
-import StatisticCardSkeleton from "./StatisticCardSkeleton";
+import { StatisticCards, StatisticCardSkeleton } from "./index";
 import { gsap } from "gsap";
 import type { Statistics } from "@/app/types";
 
@@ -101,7 +100,7 @@ const StatisticSection: React.FC<Props> = ({ statistic }) => {
         ref={titleRef}
         className="relative z-10 text-5xl md:text-6xl lg:text-7xl text-white font-bold mb-8 leading-tight cursor-default"
       >
-        <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent text-3xl md:text-6xl">
+        <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent text-4xl md:text-6xl">
           ფეხბურთელების
         </span>
         <br />

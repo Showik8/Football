@@ -1,8 +1,7 @@
 "use client";
 import React, { useLayoutEffect, useRef } from "react";
-import HeadlinesCard from "./HeadlinesCard";
+import { HeadlinesCard, Loading } from "./index";
 import type { News } from "@/app/types";
-import Loading from "./Loading";
 import { gsap } from "gsap";
 
 interface HeadLinesProps {

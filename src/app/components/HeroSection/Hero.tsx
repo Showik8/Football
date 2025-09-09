@@ -38,7 +38,6 @@ const Index = () => {
       });
     }
 
-    // Field entrance animation
     if (fieldRef.current) {
       gsap.fromTo(
         fieldRef.current,

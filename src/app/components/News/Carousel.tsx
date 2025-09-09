@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-import MatchCard from "./MatchCard";
+import { MatchCard } from "./index";
 import { gsap } from "gsap";
 import type { Matches } from "@/app/types";
 

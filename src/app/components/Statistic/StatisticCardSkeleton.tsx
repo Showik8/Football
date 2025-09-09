@@ -1,4 +1,4 @@
-const StatisticCardSkeleton = () => {
+const StatisticCardSkeleton: React.FC = () => {
   return (
     <div className="group relative">
       {/* Card Container */}

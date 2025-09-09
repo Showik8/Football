@@ -39,12 +39,12 @@ const HeadlinesCard = ({ news, first }: { news: News; first?: boolean }) => {
           alt="News Image"
         />
       </div>
-      <h4
+      <span
         ref={textRef}
         className="text-white md:text-[14px] text-[12px] leading-snug pr-2 line-clamp-3"
       >
         {news.text}
-      </h4>
+      </span>
     </div>
   );
 };
