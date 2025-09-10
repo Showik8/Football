@@ -1,16 +1,7 @@
 "use client";
 import React from "react";
-
-type Player = {
-  id: number;
-  name: string;
-  jersey: number;
-  goal: number;
-  matchPlayed?: number;
-  assist: number;
-  view: number;
-};
-
+import { useRouter } from "next/navigation";
+import type { Player } from "@/app/types";
 type StatisticType = "goal" | "assist" | "view" | "matchPlayed";
 
 enum statisticLabels {
@@ -20,7 +11,6 @@ enum statisticLabels {
   matchPlayed = "ყველაზე მეტი მატჩი",
 }
 
-// Updated color schemes for modern look
 const colorSchemes = {
   goal: {
     primary: "from-sky-400 via-sky-500 to-sky-600",
@@ -63,10 +53,15 @@ type Props = {
 
 const StatisticCards: React.FC<Props> = ({ data, type }) => {
   const colors = colorSchemes[type];
+  const router = useRouter();
+
+  const seeProfile = (id: number) => {
+    router.push(`/players/${id}`);
+  };
 
   return (
-    <div className="group relative">
-      <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-500 ease-out hover:shadow-2xl hover:scale-[1.03] border border-gray-100 min-h-[300px]">
+    <div className="group relative   ">
+      <div className="relative overflow-hidden grid rounded-3xl bg-white shadow-xl transition-all duration-500 ease-out hover:shadow-2xl hover:scale-[1.03] border border-gray-100 min-h-[300px]">
         <div
           className={`relative bg-gradient-to-r ${colors.primary} p-8 text-white rounded-t-3xl`}
         >
@@ -84,12 +79,13 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
           </div>
         </div>
 
-        {/* Players List */}
         <div className="p-6">
           <ol className="space-y-4">
             {data?.map((player, index) => (
               <li
+                onClick={() => seeProfile(player.id)}
                 key={player.id}
+                id={`${player.id}`}
                 className={`cursor-pointer w-full relative flex items-center justify-between p-5 rounded-2xl transition-all duration-300 ${
                   index === 0
                     ? `bg-gradient-to-r ${colors.secondary} text-white shadow-lg`
@@ -100,9 +96,10 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
                     : "border border-gray-200"
                 }`}
               >
-                {/* Player Info */}
-                <div className="flex items-center flex-1 gap-4">
-                  {/* Rank Badge */}
+                <div
+                  className="flex items-center flex-1 gap-4"
+                  id="player info"
+                >
                   <div
                     className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${
                       index === 0
@@ -113,25 +110,16 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
                     {index + 1}
                   </div>
 
-                  {/* Player Name */}
                   <div className="flex flex-col">
                     <span
-                      className={`font-semibold truncate ${
+                      className={`font-semibold truncate text-wrap ${
                         index === 0 ? "text-white" : "text-gray-900"
                       }`}
                     >
-                      {player.name}
-                    </span>
-                    <span
-                      className={`text-xs ${
-                        index === 0 ? "text-white/70" : "text-gray-500"
-                      }`}
-                    >
-                      #{player.jersey}
+                      {player.name} #{player.jersey}
                     </span>
                   </div>
 
-                  {/* Player Stat */}
                   <span
                     className={`ml-auto px-4 py-1 rounded-full text-sm font-bold ${
                       index === 0 ? "bg-white/20 text-white" : colors.accent
@@ -145,12 +133,10 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
           </ol>
         </div>
 
-        {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/10 to-transparent rounded-bl-full" />
         <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/5 to-transparent rounded-tr-full" />
       </div>
 
-      {/* Hover Shadow */}
       <div
         className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${colors.primary} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-25 -z-10`}
       />

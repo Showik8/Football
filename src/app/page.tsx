@@ -2,6 +2,7 @@ import Header from "./components/Header/Header";
 import Hero from "./components/HeroSection/Hero";
 import dynamic from "next/dynamic";
 import FetchData from "@/app/utils/FetchData";
+import { Analytics } from "@vercel/analytics/next";
 
 const StatisticSection = dynamic(
   () => import("./components/Statistic/StatisticSection"),
@@ -28,6 +29,7 @@ export default async function Home() {
       <StatisticSection statistic={statistics} />
       <News news={news} matches={matches} />
       <Table />
+      <Analytics />
     </>
   );
 }

@@ -109,13 +109,13 @@ const StatisticSection: React.FC<Props> = ({ statistic }) => {
 
       <div
         ref={gridRef}
-        className=" w-full  p-5 relative gap-8 z-10 mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 "
+        className=" w-full  p-20 relative gap-8 z-10 mt-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2   xl:grid-cols-2 "
       >
         {statistic ? (
           <>
             <div
               data-stat-card
-              className="transform transition-all duration-500 hover:scale-105"
+              className="transform transition-all duration-500 hover:scale-105 "
             >
               <StatisticCards data={statistic.topViewers} type="view" />
             </div>

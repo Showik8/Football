@@ -37,6 +37,9 @@ const Table = () => {
         const res = await fetch(`${baseUrl}/tournaments?${params.toString()}`, {
           method: "GET",
           signal,
+          headers: {
+            "x-custom-header": "from-vercel",
+          },
         });
 
         if (!res.ok) {

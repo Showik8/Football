@@ -30,7 +30,7 @@ export default async function FetchData(): Promise<FetchResult<ApiData>> {
     const [news, matches, statistics] = await Promise.all([
       newsRes.json() as Promise<News[]>,
       matchesRes.json() as Promise<Matches[]>,
-      statisticsRes.json() as Promise<Statistics>, // now typed correctly
+      statisticsRes.json() as Promise<Statistics>,
     ]);
 
     const data: ApiData = { news, matches, statistics };

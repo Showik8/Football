@@ -29,14 +29,23 @@ type Statistics = {
   topMatchPlayed: Player[];
 };
 
-type Player = {
+export type Player = {
   id: number;
   name: string;
   jersey: number;
+  position: "Goalkeeper" | "Defender" | "Midfielder" | "Forward" | string;
+  team: string;
+  age?: number;
+  nationality?: string;
   goal: number;
-  matchPlayed?: number;
   assist: number;
+  matchPlayed?: number;
   view: number;
+  yellowCards?: number;
+  redCards?: number;
+  height?: number;
+  weight?: number;
+  photoUrl?: string;
 };
 
 export type { Matches, News, TeamRow, Statistics };
