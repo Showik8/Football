@@ -79,7 +79,7 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-2 xl:p-6">
           <ol className="space-y-4">
             {data?.map((player, index) => (
               <li
