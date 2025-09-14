@@ -2,7 +2,13 @@ import React, { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import type { TeamRow } from "@/app/types";
 
-const Tbody = ({ rows }: { rows: TeamRow[] }) => {
+const Tbody = ({
+  rows,
+  getTeamData,
+}: {
+  rows: TeamRow[];
+  getTeamData: CallableFunction;
+}) => {
   const rowRefs = useRef<(HTMLTableRowElement | null)[]>([]);
 
   useLayoutEffect(() => {
@@ -23,11 +29,12 @@ const Tbody = ({ rows }: { rows: TeamRow[] }) => {
 
     return () => ctx.revert();
   }, [rows.length, rows]);
+
   return (
     <tbody>
       {rows?.map((r, i) => (
         <tr
-          key={r.team}
+          key={r.club}
           ref={(el: HTMLTableRowElement | null) => {
             rowRefs.current[i] = el;
           }}
@@ -49,6 +56,7 @@ const Tbody = ({ rows }: { rows: TeamRow[] }) => {
               ease: "power2.out",
             })
           }
+          onClick={() => getTeamData(r.teamId)}
           className={
             "bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm border border-white/10 transition-all rounded-xl " +
             (i === 0
@@ -57,7 +65,7 @@ const Tbody = ({ rows }: { rows: TeamRow[] }) => {
           }
         >
           <td className="pl-4 py-4 text-sm md:text-base font-medium">
-            {r.team}
+            {r.club}
           </td>
           <td className="py-4 text-center text-sm md:text-base">{r.played}</td>
           <td className="py-4 text-center text-sm md:text-base">{r.won}</td>

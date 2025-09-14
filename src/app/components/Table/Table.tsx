@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import type { TeamRow } from "@/app/types";
 import Tbody from "./Tbody";
+import { useRouter } from "next/navigation";
 
 const AgeOptions = [
   { value: "u-19", label: "U-19" },
@@ -16,6 +17,7 @@ const TournamentOptions = [
 
 const Table = () => {
   const baseUrl = process.env.NEXT_PUBLIC_URL!;
+  const router = useRouter();
   const [ageCategory, setAgeCategory] = useState("u-19");
   const [tournament, setTournament] = useState("gff");
   const [error, setError] = useState<string | null>(null);
@@ -74,6 +76,10 @@ const Table = () => {
       controller.abort();
     };
   }, [tournament, ageCategory, baseUrl]);
+
+  function getTeamData(teamId: number) {
+    router.push(`/clubs/${teamId}`);
+  }
 
   return (
     <section className="w-full p-2 bg-[#F7F9FB] md:p-6 lg:p-10 ">
@@ -142,7 +148,7 @@ const Table = () => {
               </tr>
             </thead>
 
-            {rows && <Tbody rows={rows} />}
+            {rows && <Tbody rows={rows} getTeamData={getTeamData} />}
           </table>
           {error && <div className="text-red-500">{error}</div>}
         </div>

@@ -11,7 +11,8 @@ type News = {
 };
 
 type TeamRow = {
-  team: string;
+  teamId: number;
+  club: string;
   played: number;
   won: number;
   drawn: number;
