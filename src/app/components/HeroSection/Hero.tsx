@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import Ball from "./Ball.svg";
+import Ball from "../../../../public/Ball.svg";
 import Image from "next/image";
 
 const Index = () => {
