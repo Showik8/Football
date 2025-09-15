@@ -40,13 +40,13 @@ export type Player = {
   nationality?: string;
   goal: number;
   assist: number;
-  matchPlayed?: number;
+  match_played?: number;
   view: number;
-  yellowCards?: number;
-  redCards?: number;
+  yellow_cards?: number;
+  red_cards?: number;
   height?: number;
   weight?: number;
-  photoUrl?: string;
+  photo_url?: string;
 };
 
 export type { Matches, News, TeamRow, Statistics };

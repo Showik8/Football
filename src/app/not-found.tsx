@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
 import Image from "next/image";
-import Ball from "../../public/Ball.svg";
+import Ball from "./Ball.svg";
 
 const NotFoundPage: React.FC = () => {
   const fieldRef = useRef<HTMLDivElement>(null);

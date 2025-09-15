@@ -1,21 +1,4 @@
-export type Player = {
-  id: number;
-  name: string;
-  jersey: number;
-  position: "Goalkeeper" | "Defender" | "Midfielder" | "Forward" | string;
-  team: string;
-  age?: number;
-  nationality?: string;
-  goal: number;
-  assist: number;
-  matchPlayed?: number;
-  view: number;
-  yellowCards?: number;
-  redCards?: number;
-  height?: number;
-  weight?: number;
-  photoUrl?: string;
-};
+import type { Player } from "../types";
 
 export default async function fetchPlayer(id: string): Promise<Player | null> {
   try {

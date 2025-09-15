@@ -137,7 +137,7 @@ const StatisticSection: React.FC<Props> = ({ statistic }) => {
             >
               <StatisticCards
                 data={statistic.topMatchPlayed}
-                type="matchPlayed"
+                type="match_played"
               />
             </div>
           </>

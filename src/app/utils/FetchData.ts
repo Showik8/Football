@@ -32,7 +32,6 @@ export default async function FetchData(): Promise<FetchResult<ApiData>> {
       matchesRes.json() as Promise<Matches[]>,
       statisticsRes.json() as Promise<Statistics>,
     ]);
-    console.log(statistics);
 
     const data: ApiData = { news, matches, statistics };
 

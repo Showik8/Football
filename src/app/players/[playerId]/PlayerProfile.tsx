@@ -92,7 +92,7 @@ const PlayerProfile = ({ player }: { player: Player }) => {
     {
       icon: <Users className="w-6 h-6" />,
       label: "Matches",
-      value: player.matchPlayed,
+      value: player.match_played,
       color: "blue",
     },
     {
@@ -104,13 +104,13 @@ const PlayerProfile = ({ player }: { player: Player }) => {
     {
       icon: <AlertTriangle className="w-6 h-6" />,
       label: "Yellow Cards",
-      value: player.yellowCards,
+      value: player.yellow_cards,
       color: "yellow",
     },
     {
       icon: <Award className="w-6 h-6" />,
       label: "Red Cards",
-      value: player.redCards,
+      value: player.red_cards,
       color: "red",
     },
     {

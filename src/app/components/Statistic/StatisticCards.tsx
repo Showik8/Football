@@ -2,13 +2,13 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import type { Player } from "@/app/types";
-type StatisticType = "goal" | "assist" | "view" | "matchPlayed";
+type StatisticType = "goal" | "assist" | "view" | "match_played";
 
 enum statisticLabels {
   goal = "ყველაზე მეტი გოლი",
   assist = "ყველაზე მეტი ასისტი",
   view = "ყველაზე მეტი მაყურებელი",
-  matchPlayed = "ყველაზე მეტი მატჩი",
+  match_played = "ყველაზე მეტი მატჩი",
 }
 
 const colorSchemes = {
@@ -36,7 +36,7 @@ const colorSchemes = {
     shadow: "shadow-orange-300/30",
     icon: "🌟",
   },
-  matchPlayed: {
+  match_played: {
     primary: "from-emerald-400 via-emerald-500 to-emerald-600",
     secondary: "from-emerald-500 to-emerald-600",
     accent: "bg-emerald-100 text-emerald-800",
