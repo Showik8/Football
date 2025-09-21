@@ -1,18 +1,18 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import type { Player } from "@/app/types";
-type StatisticType = "goal" | "assist" | "view" | "match_played";
+// import type { Player } from "@/app/types";
+type StatisticType = "goals" | "assists" | "views" | "matches_played";
 
 enum statisticLabels {
-  goal = "ყველაზე მეტი გოლი",
-  assist = "ყველაზე მეტი ასისტი",
-  view = "ყველაზე მეტი მაყურებელი",
-  match_played = "ყველაზე მეტი მატჩი",
+  goals = "ყველაზე მეტი გოლი",
+  assists = "ყველაზე მეტი ასისტი",
+  views = "ყველაზე მეტი მაყურებელი",
+  matches_played = "ყველაზე მეტი მატჩი",
 }
 
 const colorSchemes = {
-  goal: {
+  goals: {
     primary: "from-sky-400 via-sky-500 to-sky-600",
     secondary: "from-sky-500 to-sky-600",
     accent: "bg-sky-100 text-sky-800",
@@ -20,7 +20,7 @@ const colorSchemes = {
     shadow: "shadow-sky-300/30",
     icon: "⚽",
   },
-  assist: {
+  assists: {
     primary: "from-teal-400 via-teal-500 to-teal-600",
     secondary: "from-teal-500 to-teal-600",
     accent: "bg-teal-100 text-teal-800",
@@ -28,7 +28,7 @@ const colorSchemes = {
     shadow: "shadow-teal-300/30",
     icon: "🎯",
   },
-  view: {
+  views: {
     primary: "from-orange-400 via-orange-500 to-orange-600",
     secondary: "from-orange-500 to-orange-600",
     accent: "bg-orange-100 text-orange-800",
@@ -36,7 +36,7 @@ const colorSchemes = {
     shadow: "shadow-orange-300/30",
     icon: "🌟",
   },
-  match_played: {
+  matches_played: {
     primary: "from-emerald-400 via-emerald-500 to-emerald-600",
     secondary: "from-emerald-500 to-emerald-600",
     accent: "bg-emerald-100 text-emerald-800",
@@ -47,11 +47,27 @@ const colorSchemes = {
 };
 
 type Props = {
-  data: Player[];
+  statistic: data[];
   type: StatisticType;
 };
 
-const StatisticCards: React.FC<Props> = ({ data, type }) => {
+type data = {
+  player: Player;
+  goals?: number;
+  assists?: number;
+  views?: number;
+  matches_played?: number;
+};
+
+type Player = {
+  id: number;
+  jersey: number;
+  name: string;
+  position: string;
+};
+
+const StatisticCards: React.FC<Props> = ({ type, statistic }: Props) => {
+  console.log(statistic);
   const colors = colorSchemes[type];
   const router = useRouter();
 
@@ -73,7 +89,9 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
               </h2>
             </div>
             <div className="text-right">
-              <div className="text-3xl font-extrabold">{data?.length || 0}</div>
+              <div className="text-3xl font-extrabold">
+                {statistic.length | 0}
+              </div>
               <div className="text-sm opacity-80">Players</div>
             </div>
           </div>
@@ -81,11 +99,11 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
 
         <div className="p-2 xl:p-6">
           <ol className="space-y-4">
-            {data?.map((player, index) => (
+            {statistic.map((data, index) => (
               <li
-                onClick={() => seeProfile(player.id)}
-                key={player.id}
-                id={`${player.id}`}
+                onClick={() => seeProfile(data.player.id)}
+                key={data.player.id}
+                id={`${data.player.id}`}
                 className={`cursor-pointer w-full relative flex items-center justify-between p-5 rounded-2xl transition-all duration-300 ${
                   index === 0
                     ? `bg-gradient-to-r ${colors.secondary} text-white shadow-lg`
@@ -116,7 +134,7 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
                         index === 0 ? "text-white" : "text-gray-900"
                       }`}
                     >
-                      {player.name} #{player.jersey}
+                      {data.player.name} #{data.player.jersey}
                     </span>
                   </div>
 
@@ -125,7 +143,7 @@ const StatisticCards: React.FC<Props> = ({ data, type }) => {
                       index === 0 ? "bg-white/20 text-white" : colors.accent
                     }`}
                   >
-                    {player[type]}
+                    {data[type]}
                   </span>
                 </div>
               </li>

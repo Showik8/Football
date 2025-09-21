@@ -109,7 +109,7 @@ const StatisticSection: React.FC<Props> = ({ statistic }) => {
 
       <div
         ref={gridRef}
-        className=" w-full  p-3 relative gap-8 z-10 mt-8 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2   xl:grid-cols-2 "
+        className=" w-full  p-3  relative gap-8 z-10 mt-8 grid grid-cols-1 md:grid-cols-1 md:px-10 lg:grid-cols-2 lg:px-15   xl:grid-cols-2 xl:px-20 "
       >
         {statistic ? (
           <>
@@ -117,27 +117,30 @@ const StatisticSection: React.FC<Props> = ({ statistic }) => {
               data-stat-card
               className="transform transition-all duration-500 hover:scale-105 "
             >
-              <StatisticCards data={statistic.topViewers} type="view" />
-            </div>
-            <div
-              data-stat-card
-              className="transform transition-all duration-500 hover:scale-105"
-            >
-              <StatisticCards data={statistic.topGoalScorers} type="goal" />
-            </div>
-            <div
-              data-stat-card
-              className="transform transition-all duration-500 hover:scale-105"
-            >
-              <StatisticCards data={statistic.topAssists} type="assist" />
+              <StatisticCards type="views" statistic={statistic.topViewers} />
             </div>
             <div
               data-stat-card
               className="transform transition-all duration-500 hover:scale-105"
             >
               <StatisticCards
-                data={statistic.topMatchPlayed}
-                type="match_played"
+                statistic={statistic.topGoalScorers}
+                type="goals"
+              />
+            </div>
+            <div
+              data-stat-card
+              className="transform transition-all duration-500 hover:scale-105"
+            >
+              <StatisticCards statistic={statistic.topAssists} type="assists" />
+            </div>
+            <div
+              data-stat-card
+              className="transform transition-all duration-500 hover:scale-105"
+            >
+              <StatisticCards
+                statistic={statistic.topMatchPlayed}
+                type="matches_played"
               />
             </div>
           </>

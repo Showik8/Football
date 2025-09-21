@@ -24,10 +24,10 @@ type TeamRow = {
 };
 
 type Statistics = {
-  topGoalScorers: Player[];
-  topAssists: Player[];
-  topViewers: Player[];
-  topMatchPlayed: Player[];
+  topGoalScorers: data[];
+  topAssists: data[];
+  topViewers: data[];
+  topMatchPlayed: data[];
 };
 
 export type Player = {
@@ -35,18 +35,13 @@ export type Player = {
   name: string;
   jersey: number;
   position: "Goalkeeper" | "Defender" | "Midfielder" | "Forward" | string;
-  team: string;
-  age?: number;
-  nationality?: string;
-  goal: number;
-  assist: number;
-  match_played?: number;
-  view: number;
-  yellow_cards?: number;
-  red_cards?: number;
-  height?: number;
-  weight?: number;
-  photo_url?: string;
 };
 
+type data = {
+  player: Player;
+  goal?: number;
+  assists?: number;
+  views: number;
+  matches_played?: number;
+};
 export type { Matches, News, TeamRow, Statistics };

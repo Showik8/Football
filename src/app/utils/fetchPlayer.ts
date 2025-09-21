@@ -11,9 +11,8 @@ export default async function fetchPlayer(id: string): Promise<Player | null> {
     const res = await fetch(`${baseUrl}/players/${id}`);
 
     if (!res.ok) {
-      throw new Error(
-        `Failed to fetch player with id ${id}: ${res.statusText}`
-      );
+      console.error(`Failed to fetch player with id ${id}: ${res.statusText}`);
+      return null;
     }
 
     const data: Player = await res.json();

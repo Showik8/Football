@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import type { TeamRow } from "@/app/types";
 import Tbody from "./Tbody";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const AgeOptions = [
   { value: "u-19", label: "U-19" },
@@ -17,7 +17,7 @@ const TournamentOptions = [
 
 const Table = () => {
   const baseUrl = process.env.NEXT_PUBLIC_URL!;
-  // const router = useRouter();
+  const router = useRouter();
   const [ageCategory, setAgeCategory] = useState("u-19");
   const [tournament, setTournament] = useState("gff");
   const [error, setError] = useState<string | null>(null);
@@ -78,7 +78,7 @@ const Table = () => {
   }, [tournament, ageCategory, baseUrl]);
 
   function getTeamData(teamId: number) {
-    // router.push(`/clubs/${teamId}`);
+    router.push(`/clubs/${teamId}`);
     console.log(teamId);
   }
 

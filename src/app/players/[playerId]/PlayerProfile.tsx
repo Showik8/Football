@@ -16,7 +16,7 @@ import {
   Weight,
 } from "lucide-react";
 import Image from "next/image";
-import png from "./src/1.png";
+import png from "./src/image.png";
 import type { Player } from "@/app/types";
 
 gsap.registerPlugin(ScrollTrigger);
