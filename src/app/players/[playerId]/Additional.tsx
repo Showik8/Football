@@ -1,7 +1,9 @@
 import React from "react";
 import type { Player } from "@/app/types";
 
-const Additional = ({ player }: { player: Player }) => {
+const Additional = ({ player, age }: { player: Player; age: number }) => {
+  const statistic = player.statistics[0];
+  const team = player.team_players[0].team.name;
   return (
     <div className="container mx-auto px-6 pb-20 ">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -24,7 +26,7 @@ const Additional = ({ player }: { player: Player }) => {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Current Team:</span>
-              <span className="font-semibold">{player.team}</span>
+              <span className="font-semibold">{team}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Nationality:</span>
@@ -38,7 +40,7 @@ const Additional = ({ player }: { player: Player }) => {
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="text-gray-400">Age:</span>
-              <span className="font-semibold">{player.age} years</span>
+              <span className="font-semibold">{age} years</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Height:</span>
@@ -50,9 +52,7 @@ const Additional = ({ player }: { player: Player }) => {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Profile Views:</span>
-              <span className="text-blue-400 font-bold">
-                {player.view?.toLocaleString()}
-              </span>
+              <span className="text-blue-400 font-bold">{statistic.views}</span>
             </div>
           </div>
         </div>

@@ -67,7 +67,6 @@ type Player = {
 };
 
 const StatisticCards: React.FC<Props> = ({ type, statistic }: Props) => {
-  console.log(statistic);
   const colors = colorSchemes[type];
   const router = useRouter();
 
