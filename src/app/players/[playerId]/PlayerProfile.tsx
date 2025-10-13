@@ -27,14 +27,6 @@ const PlayerProfile = ({ player }: { player: Player }) => {
   const jerseyRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
-  const statistic = player.statistics[0];
-  const team = player.team_players[0].team.name;
-  const dateOfBirth = player.date_of_birth.split("T")[0];
-  const dob = new Date(dateOfBirth);
-
-  const today = new Date();
-  const age = today.getFullYear() - dob.getFullYear();
-
   useEffect(() => {
     if (heroRef.current) {
       gsap.fromTo(
@@ -88,37 +80,37 @@ const PlayerProfile = ({ player }: { player: Player }) => {
     {
       icon: <Trophy className="w-6 h-6" />,
       label: "Goals",
-      value: statistic.goals,
+      value: player.goals,
       color: "yellow",
     },
     {
       icon: <Target className="w-6 h-6" />,
       label: "Assists",
-      value: statistic.assists,
+      value: player.assists,
       color: "cyan",
     },
     {
       icon: <Users className="w-6 h-6" />,
       label: "Matches",
-      value: statistic.matches_played,
+      value: player.matches_played,
       color: "blue",
     },
     {
       icon: <Calendar className="w-6 h-6" />,
       label: "Age",
-      value: age,
+      value: player.age,
       color: "violet",
     },
     {
       icon: <AlertTriangle className="w-6 h-6" />,
       label: "Yellow Cards",
-      value: statistic.yellow_cards,
+      value: player.yellow_cards,
       color: "yellow",
     },
     {
       icon: <Award className="w-6 h-6" />,
       label: "Red Cards",
-      value: statistic.red_cards,
+      value: player.red_cards,
       color: "red",
     },
     {
@@ -172,7 +164,7 @@ const PlayerProfile = ({ player }: { player: Player }) => {
                 {player.position}
               </div>
               <div className="text-lg px-4 py-2 border border-blue-400 text-blue-400 rounded-full">
-                {team}
+                {player.team}
               </div>
               <div className="text-lg px-4 py-2 border border-blue-400 text-blue-400 rounded-full">
                 {player.nationality}
@@ -180,7 +172,7 @@ const PlayerProfile = ({ player }: { player: Player }) => {
             </div>
 
             <div className="text-xl text-gray-300">
-              {statistic.views} Profile Views
+              {player.views} Profile Views
             </div>
           </div>
         </div>
@@ -207,7 +199,7 @@ const PlayerProfile = ({ player }: { player: Player }) => {
         </div>
       </div>
 
-      <Aditional player={player} age={age} />
+      <Aditional player={player} />
     </div>
   );
 };

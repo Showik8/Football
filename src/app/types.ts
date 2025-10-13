@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 type Matches = {
   Home: string;
   Away: string;
@@ -12,15 +11,15 @@ type News = {
 };
 
 type TeamRow = {
-  teamId: number;
+  team: { name: string; id: number };
   club: string;
-  played: number;
+  completed_matches: number;
   won: number;
   drawn: number;
   lost: number;
-  for: number;
-  against: number;
-  goalDifference: number;
+  goals_for: number;
+  goals_against: number;
+  goal_difference: number;
   points: number;
 };
 
@@ -36,12 +35,24 @@ export type Player = {
   name: string;
   jersey: number;
   position: "Goalkeeper" | "Defender" | "Midfielder" | "Forward" | string;
+  age: number;
   nationality?: string;
   height?: number;
   weight?: number;
   date_of_birth: string;
   statistics: statistics[];
-  team_players?: any;
+  team: string;
+  assists: number;
+  competition: string;
+  created_at: data;
+  goals: number;
+  matches_played: number;
+  player_id: number;
+  red_cards: number;
+  season: string;
+  updated_at: data;
+  views: number;
+  yellow_cards: number;
 };
 
 type data = {

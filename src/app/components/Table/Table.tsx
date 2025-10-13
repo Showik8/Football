@@ -7,19 +7,21 @@ import { useRouter } from "next/navigation";
 const AgeOptions = [
   { value: "u-19", label: "U-19" },
   { value: "u-17", label: "U-17" },
+  { value: "Senior", label: "Senior" },
 ];
 
 const TournamentOptions = [
   { value: "gff", label: "GFF" },
   { value: "imereti", label: "Imereti" },
   { value: "league", label: "League" },
+  { value: "ეროვნული ლიგა 2024", label: "ეროვნული ლიგა 2024" },
 ];
 
 const Table = () => {
   const baseUrl = process.env.NEXT_PUBLIC_URL!;
   const router = useRouter();
-  const [ageCategory, setAgeCategory] = useState("u-19");
-  const [tournament, setTournament] = useState("gff");
+  const [ageCategory, setAgeCategory] = useState("Senior");
+  const [tournament, setTournament] = useState("ეროვნული ლიგა 2024");
   const [error, setError] = useState<string | null>(null);
   const [rows, setRows] = useState<TeamRow[] | null>(null);
 
@@ -49,7 +51,8 @@ const Table = () => {
         }
 
         const data = await res.json();
-        const rows: TeamRow[] = data.tournaments ?? data;
+        const rows: TeamRow[] = data.team_tournaments ?? data;
+        console.log(rows);
 
         if (rows) {
           const sorted = rows.sort(

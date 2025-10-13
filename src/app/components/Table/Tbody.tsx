@@ -34,7 +34,7 @@ const Tbody = ({
     <tbody>
       {rows?.map((r, i) => (
         <tr
-          key={r.club}
+          key={i}
           ref={(el: HTMLTableRowElement | null) => {
             rowRefs.current[i] = el;
           }}
@@ -56,7 +56,7 @@ const Tbody = ({
               ease: "power2.out",
             })
           }
-          onClick={() => getTeamData(r.teamId)}
+          onClick={() => getTeamData(r.team.id)}
           className={
             "bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm border border-white/10 transition-all rounded-xl " +
             (i === 0
@@ -65,16 +65,22 @@ const Tbody = ({
           }
         >
           <td className="pl-4 py-4 text-sm md:text-base font-medium">
-            {r.club}
+            {r.team.name}
           </td>
-          <td className="py-4 text-center text-sm md:text-base">{r.played}</td>
+          <td className="py-4 text-center text-sm md:text-base">
+            {r.completed_matches}
+          </td>
           <td className="py-4 text-center text-sm md:text-base">{r.won}</td>
           <td className="py-4 text-center text-sm md:text-base">{r.drawn}</td>
           <td className="py-4 text-center text-sm md:text-base">{r.lost}</td>
-          <td className="py-4 text-center text-sm md:text-base">{r.for}</td>
-          <td className="py-4 text-center text-sm md:text-base">{r.against}</td>
           <td className="py-4 text-center text-sm md:text-base">
-            {r.goalDifference}
+            {r.goals_for}
+          </td>
+          <td className="py-4 text-center text-sm md:text-base">
+            {r.goals_against}
+          </td>
+          <td className="py-4 text-center text-sm md:text-base">
+            {r.goal_difference}
           </td>
           <td className="py-4 pr-4 text-center font-semibold text-sm md:text-base">
             {r.points}

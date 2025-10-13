@@ -154,7 +154,7 @@ const Index = () => {
             ref={subtitleRef}
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-white"
           >
-            ვებსაიტი რომელიც ქართველ ტალანტებს მსოფლიოს გააცნობს
+            ვებსაიტი რომლითაც ქართველ ტალანტებს მსოფლიო გაიცნობს
           </p>
         </div>
       </div>

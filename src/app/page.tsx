@@ -19,7 +19,13 @@ const Table = dynamic(() => import("./components/Table/Table"), {
 
 export default async function Home() {
   const { data, error } = await FetchData();
-  if (!data || error) return <div>Error loading data</div>;
+  if (!data || error)
+    return (
+      <div>
+        <Header />
+        <Hero />
+      </div>
+    );
   const { news, matches, statistics } = data;
 
   return (
