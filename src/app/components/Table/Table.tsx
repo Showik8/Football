@@ -14,14 +14,14 @@ const TournamentOptions = [
   { value: "gff", label: "GFF" },
   { value: "imereti", label: "Imereti" },
   { value: "league", label: "League" },
-  { value: "ეროვნული ლიგა 2024", label: "ეროვნული ლიგა 2024" },
+  { value: "ErovnuliLiga", label: "ეროვნული ლიგა" },
 ];
 
 const Table = () => {
   const baseUrl = process.env.NEXT_PUBLIC_URL!;
   const router = useRouter();
   const [ageCategory, setAgeCategory] = useState("Senior");
-  const [tournament, setTournament] = useState("ეროვნული ლიგა 2024");
+  const [tournament, setTournament] = useState("ErovnuliLiga");
   const [error, setError] = useState<string | null>(null);
   const [rows, setRows] = useState<TeamRow[] | null>(null);
 
@@ -38,6 +38,7 @@ const Table = () => {
           tournament: updatedTournament ?? tournament,
         });
 
+        console.log(params);
         const res = await fetch(`${baseUrl}/tournaments?${params.toString()}`, {
           method: "GET",
           signal,
@@ -52,7 +53,7 @@ const Table = () => {
 
         const data = await res.json();
         const rows: TeamRow[] = data.team_tournaments ?? data;
-        console.log(rows);
+        console.log(data, rows);
 
         if (rows) {
           const sorted = rows.sort(

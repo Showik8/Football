@@ -18,22 +18,19 @@ const Table = dynamic(() => import("./components/Table/Table"), {
 });
 
 export default async function Home() {
-  const { data, error } = await FetchData();
-  if (!data || error)
-    return (
-      <div>
-        <Header />
-        <Hero />
-      </div>
-    );
-  const { news, matches, statistics } = data;
+  const { data } = await FetchData();
+
+  const { news, matches, statistics } = data!;
+  const [resolvedNews, resolvedMatches, resolvedStatistics] = await Promise.all(
+    [news, matches, statistics]
+  );
 
   return (
     <>
       <Header />
       <Hero />
-      <StatisticSection statistic={statistics} />
-      <News news={news} matches={matches} />
+      <StatisticSection statistic={resolvedStatistics} />
+      <News news={resolvedNews} matches={resolvedMatches} />
       <Table />
       <Analytics />
     </>
