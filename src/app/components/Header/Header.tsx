@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-// --- SVG Icons (for a self-contained component) ---
 const SearchIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -49,11 +48,12 @@ const Navigation = ({ isMobile }) => {
 };
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] =useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const headerRef = useRef(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchInputRef = useRef(null);
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -85,8 +85,12 @@ const Header = () => {
 
           <div className="hidden md:flex items-center gap-8">
             <Navigation isMobile={false} />
-            <div className="flex items-center gap-4">
-              <div className={`flex items-center transition-all duration-300 ${isSearchOpen ? 'w-48' : 'w-0'}`}>
+          </div>
+
+          <div className="flex items-center gap-2 md:gap-4">
+            
+            <div className="flex items-center">
+              <div className={`flex items-center transition-all duration-300 ${isSearchOpen ? 'w-36 md:w-48' : 'w-0'}`}>
                  <input
                     ref={searchInputRef}
                     name="chooseTeam"
@@ -103,18 +107,18 @@ const Header = () => {
                 <SearchIcon />
               </button>
             </div>
-          </div>
 
-          <div className="md:hidden z-50">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white p-2"
-              aria-label="Toggle menu"
-            >
-              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-              <div className={`w-6 h-0.5 bg-white my-1.5 transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
-              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
-            </button>
+            <div className="md:hidden z-50">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-white p-2"
+                aria-label="Toggle menu"
+              >
+                <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                <div className={`w-6 h-0.5 bg-white my-1.5 transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+                <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+              </button>
+            </div>
           </div>
         </div>
       </header>
