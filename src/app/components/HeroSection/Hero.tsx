@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Ball from "@/app/Ball.svg";
 import Image from "next/image";
+import "./hero.css";
 
 const Index = () => {
   const soccerBallRef = useRef<HTMLDivElement>(null);
@@ -15,7 +16,6 @@ const Index = () => {
   useEffect(() => {
     const tl = gsap.timeline();
 
-    // Initial setup - hide elements
     gsap.set([titleRef.current, subtitleRef.current], {
       opacity: 0,
       y: 50,
@@ -25,7 +25,6 @@ const Index = () => {
       transformOrigin: "bottom",
     });
 
-    // Soccer ball animation
     if (soccerBallRef.current) {
       gsap.set(soccerBallRef.current, { x: -100, y: 100, rotation: 0 });
 
@@ -46,7 +45,6 @@ const Index = () => {
       );
     }
 
-    // Goal posts animation
     tl.to(
       [goalPostLeftRef.current, goalPostRightRef.current],
       {
@@ -58,7 +56,6 @@ const Index = () => {
       "-=1"
     );
 
-    // Text animations
     tl.to(
       titleRef.current,
       {
@@ -79,7 +76,6 @@ const Index = () => {
       "-=0.3"
     );
 
-    // Continuous ball rotation
     gsap.to(soccerBallRef.current, {
       rotation: "+=360",
       duration: 8,
@@ -88,7 +84,6 @@ const Index = () => {
       delay: 2,
     });
 
-    // Floating animation for the ball
     gsap.to(soccerBallRef.current, {
       y: -10,
       duration: 2,
@@ -100,15 +95,12 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-green-950">
-      {/* Soccer Field Background */}
+    <div className="min-h-screen relative overflow-hidden hero-image">
       <div ref={fieldRef} className="absolute inset-0">
-        {/* Field lines */}
-        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/30 transform -translate-y-1/2" />
+        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/30 transform -translate-y-1" />
         <div className="absolute top-1/2 left-1/2 w-0.5 h-full bg-white/30 transform -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute top-1/2 left-1/2 w-32 h-32 border-2 border-white/30 rounded-full transform -translate-x-1/2 -translate-y-1/2" />
 
-        {/* Goal posts */}
         <div
           ref={goalPostLeftRef}
           className="absolute left-8 top-1/2 transform -translate-y-1/2"
@@ -130,14 +122,11 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
-        {/* Soccer Ball */}
         <div ref={soccerBallRef} className="mb-8">
           <Image src={Ball} alt={"ball"} width={70} height={70} />
         </div>
 
-        {/* Hero Text */}
         <div className="text-center space-y-6 max-w-4xl">
           <h1
             ref={titleRef}

@@ -4,13 +4,15 @@ const menuItems = ["Matches", "Statistic", "Teams", "News"];
 
 const Navigation = () => {
   return (
-    <nav className="lg:ml-17">
-      <ul className="flex gap-2  md:flex-row md:gap-6 text-center">
+    <nav>
+      <ul 
+        className="flex flex-col gap-8 md:flex-row md:gap-6 items-center"
+      >
         {menuItems.map((item) => (
           <li key={item} className="">
             <a
               href={item.toLocaleLowerCase()}
-              className="hover:text-blue-700 transition-colors duration-200 md:text-2xl text-[16px]"
+              className="hover:text-blue-700 transition-colors duration-200 text-2xl md:text-lg"
             >
               {item}
             </a>
