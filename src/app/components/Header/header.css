@@ -1,6 +1,17 @@
-.transparent-gradient{
-background: -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.04) 100%);
-background: -moz-linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.04) 100%);
-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.04) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFFFFF", endColorstr="#FFFFFF", GradientType=0);
+/* УДАЛЕНЫ: :root, .glass-overlay, .glass-specular, .glass-filter.
+  Они заменены одним классом .glass-container.
+*/
+
+.glass-container {
+  /* Свойства из вашего миксина */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Я сохранил border-radius: 0, так как вы просили 
+    не скруглять углы хедера.
+  */
+  border-radius: 0;
 }

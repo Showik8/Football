@@ -1,0 +1,36 @@
+/* navigation.css */
+
+/* Этот класс будет применен к вашим ссылкам 'a' */
+.nav-link {
+  text-decoration: none;
+  position: relative;
+  
+  /* Даем линии немного места */
+  padding-bottom: 8px; 
+
+  /* Плавный переход для цвета текста (если вы захотите его добавить) */
+  transition: color 0.4s;
+}
+
+/* Это сама линия подчеркивания */
+.nav-link::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px; /* Вы можете изменить толщину линии здесь */
+  background-color: #A6A6A6;
+  bottom: 0;
+  left: 0;
+  /* Плавная анимация 'роста' линии */
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* При наведении линия 'растет' до 100% */
+.nav-link:hover::before {
+  width: 100%;
+}
+
+/* При наведении делаем текст ярко-белым */
+.nav-link:hover {
+  color: #ffffff;
+}

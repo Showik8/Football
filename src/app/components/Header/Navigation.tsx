@@ -1,18 +1,28 @@
 import React from "react";
+import "./navigation.css";
 
-const menuItems = ["Matches", "Statistic", "Teams", "News"];
 
-const Navigation = () => {
+const menuItems = ["ჩვენს შესახებ", "მატჩები", "სტატისტიკა", "გუნდები", "ახალი ამბები", "კონტაქტი"];
+
+interface NavigationProps {
+  isMobile: boolean;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ isMobile }) => {
   return (
     <nav>
-      <ul 
-        className="flex flex-col gap-8 md:flex-row md:gap-6 items-center"
+      <ul
+        className={`flex items-center ${
+          isMobile
+            ? "flex-col gap-10"
+            : "flex-row gap-12"
+        }`}
       >
         {menuItems.map((item) => (
-          <li key={item} className="">
+          <li key={item}>
             <a
-              href={item.toLocaleLowerCase()}
-              className="hover:text-blue-700 transition-colors duration-200 text-2xl md:text-lg"
+              href={`#${item.toLowerCase()}`}
+              className="nav-link text-lg md:text-lg lg:text-lg text-white"
             >
               {item}
             </a>
