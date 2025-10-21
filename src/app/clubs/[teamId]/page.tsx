@@ -1,13 +1,19 @@
+import { getTeamData } from "./mock-data";
+import TeamSquadClientWrapper from "./team-squad/TeamSquadClientWrapper";
+
 type Params = {
   teamId: string;
 };
 
-async function Page({ params }: { params: Promise<Params> }) {
+export default async function Page({ params }: { params: Promise<Params> }) {
   const resolvedParams = await params;
   const parseParams = resolvedParams.teamId;
-  console.log(parseParams);
+  const teamData = await getTeamData(parseParams);
 
-  return <h1>{parseParams}</h1>;
+  if (!teamData) return <div>Team not found</div>;
+  return (
+    <main className="min-h-screen bg-gray-900 text-white p-4 sm:p-6 md:p-8">
+      <TeamSquadClientWrapper teamData={teamData} />
+    </main>
+  );
 }
-
-export default Page;

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import "./header.css"; // Стили для glass-эффекта
-import "./navigation.css"; // Стили для эффекта подчёркивания
+import "./header.css";
+import "./navigation.css";
 import Image from "next/image";
 import Navigation from "./Navigation";
 
@@ -123,9 +123,7 @@ const Header = () => {
         className={`md:hidden fixed inset-0 z-40 bg-black/90 backdrop-blur-xl transition-opacity duration-500 ease-in-out
                    flex flex-col items-center justify-center
                    ${
-                     isMenuOpen
-                       ? "opacity-100 visible"
-                       : "opacity-0 invisible"
+                     isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
                    }`}
       >
         <Navigation isMobile={true} />

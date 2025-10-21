@@ -1,8 +1,13 @@
 import React from "react";
-import "./navigation.css";
 
-
-const menuItems = ["ჩვენს შესახებ", "მატჩები", "სტატისტიკა", "გუნდები", "ახალი ამბები", "კონტაქტი"];
+const menuItems = {
+  "ჩვენს შესახებ": "about",
+  "მატჩები": "matches",
+  "სტატისტიკა": "statistics",
+  "გუნდები": "teams",
+  "ახალი ამბები": "news",
+  "კონტაქტი": "contact",
+};
 
 interface NavigationProps {
   isMobile: boolean;
@@ -13,15 +18,13 @@ const Navigation: React.FC<NavigationProps> = ({ isMobile }) => {
     <nav>
       <ul
         className={`flex items-center ${
-          isMobile
-            ? "flex-col gap-10"
-            : "flex-row gap-12"
+          isMobile ? "flex-col gap-10" : "flex-row gap-12"
         }`}
       >
-        {menuItems.map((item) => (
+        {Object.entries(menuItems).map(([item, link]) => (
           <li key={item}>
             <a
-              href={`#${item.toLowerCase()}`}
+              href={link}
               className="nav-link text-lg md:text-lg lg:text-lg text-white"
             >
               {item}

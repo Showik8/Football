@@ -71,6 +71,10 @@ const StatisticSection: React.FC<Props> = ({ statistic }) => {
     return () => ctx.revert();
   }, [statistic]);
 
+  if (!statistic) {
+    return null;
+  }
+
   return (
     <section
       ref={sectionRef}

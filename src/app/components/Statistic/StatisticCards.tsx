@@ -98,55 +98,67 @@ const StatisticCards: React.FC<Props> = ({ type, statistic }: Props) => {
 
         <div className="p-2 xl:p-6">
           <ol className="space-y-4">
-            {statistic.map((data, index) => (
-              <li
-                onClick={() => seeProfile(data.player.id)}
-                key={data.player.id}
-                id={`${data.player.id}`}
-                className={`cursor-pointer w-full relative flex items-center justify-between p-5 rounded-2xl transition-all duration-300 ${
-                  index === 0
-                    ? `bg-gradient-to-r ${colors.secondary} text-white shadow-lg`
-                    : "bg-gray-50 hover:bg-gray-100 text-gray-900"
-                } ${
-                  index === 0
-                    ? "border-2 border-white/20"
-                    : "border border-gray-200"
-                }`}
-              >
-                <div
-                  className="flex items-center flex-1 gap-4"
-                  id="player info"
-                >
-                  <div
-                    className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${
-                      index === 0
-                        ? "bg-white/20 text-white"
-                        : `bg-gradient-to-r ${colors.primary} text-white`
-                    }`}
-                  >
-                    {index + 1}
-                  </div>
-
-                  <div className="flex flex-col">
-                    <span
-                      className={`font-semibold truncate text-wrap ${
-                        index === 0 ? "text-white" : "text-gray-900"
+            {Array.isArray(statistic) && statistic.length > 0 ? (
+              statistic
+                .filter((item) => !!item?.player)
+                .map((item, index) => {
+                  const playerId = item.player?.id;
+                  return (
+                    <li
+                      onClick={() => playerId && seeProfile(playerId)}
+                      key={playerId ?? `player-${index}`}
+                      id={`${playerId ?? `player-${index}`}`}
+                      className={`cursor-pointer w-full relative flex items-center justify-between p-5 rounded-2xl transition-all duration-300 ${
+                        index === 0
+                          ? `bg-gradient-to-r ${colors.secondary} text-white shadow-lg`
+                          : "bg-gray-50 hover:bg-gray-100 text-gray-900"
+                      } ${
+                        index === 0
+                          ? "border-2 border-white/20"
+                          : "border border-gray-200"
                       }`}
                     >
-                      {data.player.name} #{data.player.jersey}
-                    </span>
-                  </div>
+                      <div
+                        className="flex items-center flex-1 gap-4"
+                        id="player info"
+                      >
+                        <div
+                          className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${
+                            index === 0
+                              ? "bg-white/20 text-white"
+                              : `bg-gradient-to-r ${colors.primary} text-white`
+                          }`}
+                        >
+                          {index + 1}
+                        </div>
 
-                  <span
-                    className={`ml-auto px-4 py-1 rounded-full text-sm font-bold ${
-                      index === 0 ? "bg-white/20 text-white" : colors.accent
-                    }`}
-                  >
-                    {data[type]}
-                  </span>
-                </div>
-              </li>
-            ))}
+                        <div className="flex flex-col">
+                          <span
+                            className={`font-semibold truncate text-wrap ${
+                              index === 0 ? "text-white" : "text-gray-900"
+                            }`}
+                          >
+                            {item.player?.name ?? "Unknown"} #
+                            {item.player?.jersey ?? "-"}
+                          </span>
+                        </div>
+
+                        <span
+                          className={`ml-auto px-4 py-1 rounded-full text-sm font-bold ${
+                            index === 0
+                              ? "bg-white/20 text-white"
+                              : colors.accent
+                          }`}
+                        >
+                          {item[type] ?? 0}
+                        </span>
+                      </div>
+                    </li>
+                  );
+                })
+            ) : (
+              <div>No data available</div>
+            )}
           </ol>
         </div>
 

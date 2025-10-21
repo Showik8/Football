@@ -25,6 +25,8 @@ export default async function Home() {
     [news, matches, statistics]
   );
 
+  if (!data) return <div>Loading...</div>;
+
   return (
     <>
       <Header />
