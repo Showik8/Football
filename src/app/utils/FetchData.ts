@@ -1,4 +1,5 @@
 import type { Matches, News, Statistics } from "../types";
+import { env } from "process";
 
 type FetchResult<T> = {
   data: T | null;
@@ -12,7 +13,7 @@ type ApiData = {
 };
 
 export default async function FetchData(): Promise<FetchResult<ApiData>> {
-  const baseUrl = process.env.NEXT_PUBLIC_URL!;
+  const baseUrl = env.NEXT_PUBLIC_URL!;
 
   try {
     const [newsRes, matchesRes, statisticsRes] = await Promise.all([

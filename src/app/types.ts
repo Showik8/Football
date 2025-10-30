@@ -6,8 +6,8 @@ type Matches = {
 };
 
 type News = {
-  text: string;
   photo_url: string;
+  text: string;
 };
 
 type TeamRow = {

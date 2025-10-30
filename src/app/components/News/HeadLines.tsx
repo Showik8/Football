@@ -5,14 +5,14 @@ import type { News } from "@/app/types";
 import { gsap } from "gsap";
 
 interface HeadLinesProps {
-  data: News[] | null;
+  news: News[] | null;
 }
 
-const HeadLines: React.FC<HeadLinesProps> = ({ data }) => {
+const HeadLines: React.FC<HeadLinesProps> = ({ news }) => {
   const listRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
-    if (!listRef.current || !data?.length) return;
+    if (!listRef.current || !news?.length) return;
 
     const ctx = gsap.context(() => {
       const items = listRef.current!.querySelectorAll<HTMLElement>(
@@ -22,7 +22,9 @@ const HeadLines: React.FC<HeadLinesProps> = ({ data }) => {
     }, listRef);
 
     return () => ctx.revert();
-  }, [data?.length]);
+  }, [news?.length]);
+
+  if (!news) return null;
 
   return (
     <div
@@ -33,10 +35,10 @@ const HeadLines: React.FC<HeadLinesProps> = ({ data }) => {
         Headlines
       </h2>
 
-      {data && data.length > 0 ? (
-        data.map((news, index) => (
+      {news && news.length > 0 ? (
+        news.map((newsItem, index) => (
           <div key={index} data-headline-item>
-            <HeadlinesCard news={news} first={index === 0} />
+            <HeadlinesCard news={newsItem} first={index === 0} />
           </div>
         ))
       ) : (

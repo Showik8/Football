@@ -6,7 +6,6 @@ import "./navigation.css";
 import Image from "next/image";
 import Navigation from "./Navigation";
 
-// --- SVG иконка поиска ---
 const SearchIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +84,7 @@ const Header = () => {
               </div>
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 transition-transform duration-300 hover:scale-110 text-gray-200 hover:text-white transition-colors"
+                className="p-2  duration-300 hover:scale-110 text-gray-200 hover:text-white transition-colors"
                 aria-label="Toggle search"
               >
                 <SearchIcon />

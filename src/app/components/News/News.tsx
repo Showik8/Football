@@ -31,7 +31,7 @@ const News = ({ news, matches }: { news: News[]; matches: Matches[] }) => {
         <Carousel matches={matches} />
         <div ref={itemRef} className="flex flex-col gap-4 lg:flex-row ">
           {news && <NewsCard news={news[0]} />}
-          <HeadLines data={news} />
+          <HeadLines news={news} />
         </div>
       </section>
     </>
